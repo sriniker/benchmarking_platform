@@ -103,12 +103,12 @@ def readMLFile(ml_dict, read_dict, filepath):
         raise IOError('file does not exist:', filepath)
     else:
         for line in myfile:
-            l = line.rstrip().split()
-        if len(l) != 2:
-            raise ValueError('Wrong number of arguments in ML file:', line)
-        if l[0] in read_dict:
-            ml_dict[l[0]] = read_dict[l[0]](l[1])
-        else:
-            raise KeyError('Wrong parameter in naive Bayes file:', line)
+            l = line.strip().split()
+            if len(l) != 2:
+                raise ValueError('Wrong number of arguments in ML parameter file:', line)
+            if l[0] in read_dict:
+                ml_dict[l[0]] = read_dict[l[0]](l[1])
+            else:
+                raise KeyError('Wrong parameter in ML parameter file:', line)
     return ml_dict
 
